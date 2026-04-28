@@ -1,0 +1,39 @@
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        res = []
+        cur_s = []
+
+        if not digits:
+            return res
+
+        digit_map = {
+            "2": ["a", "b", "c"],
+            "3": ["d", "e", "f"],
+            "4": ["g", "h", "i"],
+            "5": ["j", "k", "l"],
+            "6": ["m", "n", "o"],
+            "7": ["p", "q", "r", "s"],
+            "8": ["t", "u", "v"],
+            "9": ["w", "x", "y", "z"],
+        }
+
+        def dfs(i):
+            if i == len(digits):
+                res.append("".join(cur_s))
+                return
+
+            choices = digit_map[digits[i]]
+
+            for choice in choices:
+                cur_s.append(choice)
+                dfs(i+1)
+                cur_s.pop()
+        
+        dfs(0)
+
+        return res
+
+
+
+            
+        
